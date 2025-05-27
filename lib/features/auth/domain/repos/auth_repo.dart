@@ -1,6 +1,7 @@
 import 'package:books_app/core/errors/failures.dart';
+import 'package:books_app/features/auth/domain/entities/user_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class AuthRepo{
-  Future<Either<Failure,U>>
+  Future<Either<Failure,UserEntity>> 
 }
