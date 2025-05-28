@@ -24,4 +24,22 @@ class FirebaseAuthService {
       throw CustomExeption(message: 'something went wrong, try later.');
     }
   }
+  Future<User> signInUserWithEmailAndPassword({required String email, required String password,})async{
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password
+      );
+      return credential.user!;
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+      throw CustomExeption(message: 'user is not found');
+      } else if (e.code == 'wrong-password') {
+        throw CustomExeption(message: 'Wrong password provided for that user');
+      }else{
+        throw CustomExeption(message: 'something went wrong, try later.');
+      }
+    }
+  }
 }
